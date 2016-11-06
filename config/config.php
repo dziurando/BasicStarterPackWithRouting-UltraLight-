@@ -1,6 +1,6 @@
 <?php
 return [
-    'root_path'=>"E:\web\package\\",
+    'root_path'=>"E:\web\BasicStarter\\",
     'protocol'=>'http',
     'host'=>"127.0.0.1",
     'url'=>"http://127.0.0.1/",
