@@ -1,0 +1,23 @@
+{
+	"authors": [
+        {
+            "name": "Adrian Dziurdzikowski",
+            "email": "adrian.dziurdzikowski@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        
+    },
+    "require-dev":{
+    	"raveren/kint": "1.0"
+    },
+    "autoload": {
+        "classmap": ["basicpackages/","App/"
+            
+        ],
+        "psr-4":{
+             
+        }
+    }
+}

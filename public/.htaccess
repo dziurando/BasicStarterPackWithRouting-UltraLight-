@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteRule ^styles/(.*)$ - [L]
+RewriteRule ^images/(.*)$ - [L]
+RewriteRule ^scripts/(.*)$ - [L]
+RewriteRule ^.*$ index.php [NC,L]
