@@ -1,6 +1,6 @@
 <?php
 namespace Requests;
-
+use \Config;
 
 class CurrentRequest extends Request{
     protected $Post=false;
@@ -13,12 +13,12 @@ class CurrentRequest extends Request{
         if($this->$name===false&&method_exists($full_name,"create")){
             $this->$name=$full_name::create();
             return $this->$name;
-        }else{
-            return (false !==$this->$name?$this->$name:NULL);
+        }elseif($this->$name===false){
+            return NULL;
         }
-
+        return $this->$name;
     }
-    protected function __construct($root_uri) {
+    protected function __construct() {
         $req=$_SERVER;
         $this->method=$req['REQUEST_METHOD'];
         if(isset($req['CONTENT_TYPE'])){
@@ -26,8 +26,8 @@ class CurrentRequest extends Request{
         }else{
             $this->content_type='*';
         }
-        $this->uri=str_replace($root_uri,"",$req['REDIRECT_URL']);
-        $this->id=$this->uri.$this->content_type;
+        $this->uri=str_replace(Config::Uri(),"",$req['REDIRECT_URL']);
+        $this->id=$this->uri.$this->content_type.$this->method;
     }
     
 }

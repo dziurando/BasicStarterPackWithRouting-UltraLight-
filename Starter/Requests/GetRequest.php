@@ -8,7 +8,7 @@ class GetRequest extends Request{
         $this->action=$action;
         $this->content_type="*";
         $this->cross_orgin=$cross_orgin;
-        $this->id=$this->uri.$this->content_type;
+        $this->id=$this->uri.$this->content_type.$this->method;
     }
     
 }

@@ -36,8 +36,12 @@ class Config{
     protected static function setParams($file){
         $array=include($file);
         if(!array_diff_key(self::$params, $array)){
-            $array['uri']=(substr($array['uri'], -1)=="/"?substr($array['uri'],0,-1):$array['uri']);
-            $array['url']=(substr($array['url'], -1)=="/"?substr($array['url'],0,-1):$array['url']);
+            if(substr($array['uri'], -1)=="/"){
+                $array['uri']=substr($array['uri'],0,-1);
+            }
+            if(substr($array['url'], -1)=="/"){
+                $array['url']=substr($array['url'],0,-1);
+            }
             self::$params=$array;
         }else{
             die("Config file error");

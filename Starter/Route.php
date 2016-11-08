@@ -17,12 +17,9 @@
     public function form($uri, $action) {
         return Requests\Request::form($uri, $action)->run(self::$currentRequest);
     }
-    public static function getRouteMap() {
-        return require(Config::Root().Config::Routes());
-    }
     public static function routeCurrent() {
         self::$currentRequest=Requests\Request::current();
-        self::getRouteMap();
+        require("../".Config::Routes());
     }
 
 }

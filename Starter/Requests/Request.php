@@ -1,6 +1,6 @@
 <?php
 namespace Requests;
-use \TimeDebug;
+use \Config;
 class Request {
     public $method;
     public $uri;
@@ -11,7 +11,7 @@ class Request {
    
     private function __construct() {}
     public static function current(){
-        return new CurrentRequest(\Config::Uri());
+        return new CurrentRequest();
     }
     
     public static function get(&$uri,&$action,&$cross_orgin=false){       
@@ -33,13 +33,12 @@ class Request {
     public function parseAction($action){
         return $action;
     }
-    protected function id(){
-        return $this->uri.$this->content_type;
-    }
     public function run(&$currentRequest){       
-        if($this->id===$currentRequest->id && $this->method===$currentRequest->method){ 
-            if(($this->cross_orgin)||(!$this->cross_orgin && $_SERVER['SERVER_NAME'] == \Config::Host())){
+        if($this->id===$currentRequest->id){ 
+            if($_SERVER['SERVER_NAME'] === Config::Host()){
                 call_user_func($this->action,$currentRequest);die;                              
+            }elseif($this->cross_orgin===true){
+                call_user_func($this->action,$currentRequest);die; 
             }else{
                 return die('No cross orgin allowed');
             }
